@@ -1,5 +1,22 @@
 import { useEffect, useState } from 'react';
 
+interface SkipSnakeCase {
+  id: number;
+  size: number;
+  price_before_vat: number;
+  vat: number;
+  hire_period_days: number;
+  allowed_on_road: boolean;
+  allows_heavy_waste: boolean;
+  forbidden: boolean;
+  postcode: string;
+  area: string;
+  per_tonne_cost: number | null;
+  transport_cost: number | null;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Skip {
   id: number;
   size: number;
@@ -17,7 +34,7 @@ export interface Skip {
   updatedAt: string;
 }
 
-const mapToCamelCase = (skip: any): Skip => {
+const mapToCamelCase = (skip: SkipSnakeCase): Skip => {
   return {
     id: skip.id,
     size: skip.size,
@@ -56,8 +73,8 @@ export const useData = () => {
 
         const camelCaseData = data.map(mapToCamelCase);
         setSkips(camelCaseData);
-      } catch (error: any) {
-        setError(error.message || 'Something went wrong');
+      } catch (error) {
+        setError(error?.message || 'Something went wrong');
       } finally {
         setLoading(false);
       }
