@@ -73,8 +73,8 @@ export const useData = () => {
 
         const camelCaseData = data.map(mapToCamelCase);
         setSkips(camelCaseData);
-      } catch (error) {
-        setError(error?.message || 'Something went wrong');
+      } catch {
+        setError('Something went wrong');
       } finally {
         setLoading(false);
       }
