@@ -7,7 +7,6 @@ import path from 'path';
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    open: (process.env.BROWSER = 'chrome'),
     port: 80,
   },
   resolve: {
