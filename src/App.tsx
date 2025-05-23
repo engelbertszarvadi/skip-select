@@ -3,9 +3,10 @@ import Card from './components/custom/Card';
 import { useData, type Skip } from './hooks/useData';
 import Header from './components/custom/Header';
 import Stepper from './components/custom/Stepper';
+import Loader from './components/custom/Loader';
 
 const App = () => {
-  const { skips } = useData();
+  const { skips, loading } = useData();
   const [selectedSkip, setSelectedSkip] = useState<number | null>(null);
 
   const handleSelect = (event: MouseEvent, currentSkip: Skip) => {
@@ -17,8 +18,15 @@ const App = () => {
     });
   };
 
+  if (loading)
+    return (
+      <div className='flex items-center justify-center h-screen w-screen'>
+        <Loader />
+      </div>
+    );
+
   return (
-    <div className='w-svw max-w-[100%]'>
+    <div className='w-screen max-w-full'>
       <Stepper isSkipSelected={Boolean(selectedSkip)} />
       <Header
         title='Choose Your Skip Size'
