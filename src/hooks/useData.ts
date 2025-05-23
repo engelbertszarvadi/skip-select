@@ -17,7 +17,7 @@ export interface Skip {
   updatedAt: string;
 }
 
-function mapToCamelCase(skip: any): Skip {
+const mapToCamelCase = (skip: any): Skip => {
   return {
     id: skip.id,
     size: skip.size,
@@ -34,7 +34,7 @@ function mapToCamelCase(skip: any): Skip {
     createdAt: skip.created_at,
     updatedAt: skip.updated_at,
   };
-}
+};
 
 export const useData = () => {
   const [skips, setSkips] = useState<Skip[]>([]);
